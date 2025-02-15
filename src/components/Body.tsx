@@ -1,8 +1,18 @@
 import { ArrowUpward, Calculate,  Grid4x4, Man,  Payments} from "@mui/icons-material"
+import { useDispatch } from "react-redux"
 import { Link, Outlet, useLocation } from "react-router-dom"
+import { addVal, removeVal } from "../store/Slices/getValSlice"
 const num = ["1","2","3","4","5","6","7","8","9","0",".","X","←","✓"]
 const body = () => {
     const location = useLocation()
+    const dispatch = useDispatch()
+    const dataHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (e.currentTarget.innerText === "←") {
+            dispatch(removeVal())
+        }else if(e.currentTarget.innerText !== "✓"){
+            dispatch(addVal(e.currentTarget.innerText))
+        }
+    }
   return (
     <div className="grid grid-cols-12">
 
@@ -78,7 +88,7 @@ const body = () => {
                 {
                     num.map((n,i) => {
                         return (
-                            <button key={i} className={`${n==="✓"?"col-span-2 bg-green-400 text-white":"col-span-1"} shadow-md ${n==="←"?"bg-red-500 text-white":""} bg-[#F2FCFF] text-[.8rem] py-2 px-1`}>{n}</button>
+                            <button key={i} onClick={(e) => dataHandler(e)} className={`${n==="✓"?"col-span-2 bg-green-400 text-white":"col-span-1"} shadow-md ${n==="←"?"bg-red-500 text-white":""} bg-[#F2FCFF] text-[.8rem] py-2 px-1`}>{n}</button>
                         )
                     })
                 }

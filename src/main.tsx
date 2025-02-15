@@ -8,6 +8,8 @@ import SalesItems from './pages/SalesItems.tsx';
 import Reciept from './pages/Reciept.tsx';
 import OminiChannel from './pages/OminiChannel.tsx';
 import Customer from './pages/Customer.tsx';
+import { Provider } from 'react-redux';
+import store from './store/store.ts';
 const route = createBrowserRouter([
   {
     path:"",
@@ -38,6 +40,8 @@ const route = createBrowserRouter([
 ])
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <Provider store={store}>
     <RouterProvider router={route}/>
+    </Provider>
   </StrictMode>,
 )
