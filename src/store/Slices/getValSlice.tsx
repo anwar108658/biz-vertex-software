@@ -4,7 +4,7 @@ export const getValSlice = createSlice({
     name:"addId",
     initialState:{
         data:"" as string,
-        keyBoard:false
+        keyBoard:false,
     },
     reducers:{
         addVal:(state,action) => {
