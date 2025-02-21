@@ -1,12 +1,14 @@
 import { Alarm, Keyboard, Man, Person,PowerSettingsNew, Search, TtySharp } from "@mui/icons-material";
 import logo from "./../assets/Logo - Dark Theme.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { keyBoardVal } from "../store/Slices/getValSlice";
 
 interface StoreState {
   data: string;
 }
 
 const Navbar = () => {
+    const dispatch = useDispatch();
     const store = useSelector((store: StoreState) => store)
     console.log(store)
   return (
@@ -32,7 +34,7 @@ const Navbar = () => {
         </div>
         <div className="col-span-1 order-1 sm:order-0 flex justify-end gap-2 items-center py-1">
             <button className="bg-[#009DDF] h-full px-3 flex items-center rounded-sm"><Search/></button>
-            <button className="bg-[#009DDF] h-full px-3 flex items-center rounded-sm"><Keyboard/></button>
+            <button onClick={() => dispatch(keyBoardVal())} className="bg-[#009DDF] h-full px-3 flex items-center rounded-sm"><Keyboard/></button>
         </div>
         <ul className="col-span-2 flex gap-2 items-center">
             <li className="flex-1 flex items-center justify-center cursor-pointer border-b-2 border-b-[#292D2D] hover:border-b-2 hover:border-b-[#009DDF] hover:bg-[#3E4242] h-full ">SALES</li>

@@ -2,21 +2,23 @@ import { ArrowUpward, Calculate,  Grid4x4, Man,  Payments} from "@mui/icons-mate
 import { useDispatch } from "react-redux"
 import { Link, Outlet, useLocation } from "react-router-dom"
 import { addVal, removeVal } from "../store/Slices/getValSlice"
+
 const num = ["1","2","3","4","5","6","7","8","9","0",".","X","←","✓"]
 const body = () => {
     const location = useLocation()
     const dispatch = useDispatch()
     const dataHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-        if (e.currentTarget.innerText === "←") {
+        const value = e.currentTarget.innerText
+        if (value === "←") {
             dispatch(removeVal())
-        }else if(e.currentTarget.innerText !== "✓"){
-            dispatch(addVal(e.currentTarget.innerText))
+        }else if(value !== "✓"){
+            dispatch(addVal(value))
         }
     }
   return (
     <div className="grid grid-cols-12">
 
-        <div className="order-1 md:order-0 col-span-12 md:col-span-10 gap-2 grid grid-cols-10 bg-[#E1E1E9]">
+        <div className="order-1 md:order-0 col-span-12 md:col-span-10 gap-2 grid grid-cols-10 h-[90.3vh] bg-[#E1E1E9]">
 
             <div className="col-span-10 grid grid-cols-10 text-[.9rem] gap-[1px] overflow-auto bg-white min-h-[17rem]">
                 <div className="col-span-2 grid grid-cols-3 gap-[1px]">
@@ -70,7 +72,7 @@ const body = () => {
             </div>
         </div>
 
-        <div className="col-span-12 md:col-span-2 bg-[#E1E1E9] p-[1px] flex flex-col gap-1">
+        <div className="col-span-12 md:col-span-2 bg-[#E1E1E9] p-[1px] h-[90.3vh] flex flex-col justify-between">
             <div className="flex justify-between py-2 px-1">
                 <div className="text-[.9rem]">
                     <p>Recipt-ID</p>
