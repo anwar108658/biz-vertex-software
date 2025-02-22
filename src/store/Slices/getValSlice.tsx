@@ -19,10 +19,13 @@ export const getValSlice = createSlice({
         },
         keyBoardVal:(state) => {
             state.keyBoard = !state.keyBoard
+        },
+        keyBoardValChange:(state,action) => {
+            state.keyBoard = action.payload
         }
     }
 })
 
-export const {addVal,removeVal,keyBoardVal} = getValSlice.actions
+export const {addVal,removeVal,keyBoardVal,keyBoardValChange} = getValSlice.actions
 
 export default getValSlice.reducer
