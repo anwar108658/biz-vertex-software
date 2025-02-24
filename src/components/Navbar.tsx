@@ -1,10 +1,11 @@
 import { Alarm, Keyboard, Man, Person,PowerSettingsNew, Search, TtySharp } from "@mui/icons-material";
 import logo from "./../assets/Logo - Dark Theme.png";
 import { useDispatch, useSelector } from "react-redux";
-import { keyBoardVal } from "../store/Slices/getValSlice";
+import { keyBoardVal, searchOpen } from "../store/Slices/getValSlice";
 
 interface StoreState {
   data: string;
+  isSearch:boolean
 }
 
 const Navbar = () => {
@@ -33,7 +34,7 @@ const Navbar = () => {
             <div className="col-span-11 bg-[#404648]"><input value={store.data} className="w-full h-full focus:outline-none p-2" type="text" /></div>
         </div>
         <div className="col-span-1 order-1 sm:order-0 flex justify-end gap-2 items-center py-1">
-            <button className="bg-[#009DDF] h-full px-3 flex items-center rounded-sm"><Search/></button>
+            <button onClick={() => dispatch(searchOpen())} className="bg-[#009DDF] h-full px-3 flex items-center rounded-sm"><Search/></button>
             <button onClick={() => dispatch(keyBoardVal())} className="bg-[#009DDF] h-full px-3 flex items-center rounded-sm"><Keyboard/></button>
         </div>
         <ul className="col-span-2 flex gap-2 items-center">

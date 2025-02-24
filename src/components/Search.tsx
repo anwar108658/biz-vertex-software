@@ -1,8 +1,15 @@
-import { SearchOutlined } from "@mui/icons-material"
-import { useDispatch } from "react-redux"
-import { keyBoardValChange } from "../store/Slices/getValSlice"
+import { Add, Close, CopyAll, DoubleArrow, SearchOutlined } from "@mui/icons-material"
+import { useDispatch, useSelector } from "react-redux"
+import { keyBoardValChange, searchOpen } from "../store/Slices/getValSlice"
+
+
+interface StoreState {
+  data: string;
+  isSearch:boolean
+}
 
 const Search = () => {
+  const store = useSelector((store: StoreState) => store)
   const productData = [
     {
       Article:1,
@@ -157,11 +164,12 @@ const Search = () => {
   ];
   const dispatch = useDispatch()
   return (
-    <div className="w-full absolute top-0 backdrop-blur-sm flex h-screen items-center justify-center">
-        <div className="w-full max-w-[90%] h-[90vh] bg-gray-300">
+    <div className={`${!store.isSearch?"hidden":""} w-full fixed top-0 backdrop-blur-sm h-full overflow-y-auto overflow-x-hidden`}>
+      <div className="w-full flex min-h-screen  items-center justify-center">
+        <div className="w-full max-w-[90%] min-h-[90vh] bg-gray-300">
             <div className="flex justify-between py-1 px-3 bg-black text-white">
                 <h2 className="font-bold">Article</h2>
-                <button>X</button>
+                <button onClick={() => dispatch(searchOpen())}>X</button>
             </div>
             <div className="w-full px-10 py-2">
                 <div className="flex text-[.9rem]">
@@ -229,8 +237,42 @@ const Search = () => {
                   </tbody>
                   </table>
                 </div>
+                <div className="flex mt-2">
+                  <p className="text-[.9rem]">Page 1 of 161 (1606 results)</p>
+                  <div className="flex-1 flex justify-center gap-1">
+                    <button className="px-8 bg-[#009DDF] text-white rounded-sm"><DoubleArrow sx={{rotate:"180deg"}}/></button>
+                    <button className="px-8 bg-[#009DDF] text-white rounded-sm"><DoubleArrow/></button>
+                  </div>
+                </div>
+                <div className="w-full mt-8 flex flex-wrap justify-end gap-3">
+                  <button className="col-span-2 bg-[#009DDF] flex text-white">
+                      <div className="h-full bg-[#1280C2] flex flex-col justify-center px-3 py-1">
+                      <CopyAll/>
+                      </div>
+                      <div className="h-full w-full flex justify-center items-center px-4 py-2">
+                      <h2 className="text-center text-[1rem] whitespace-nowrap">Display Long Text</h2>
+                      </div>
+                  </button>
+                  <button className="col-span-2 bg-[#009DDF] flex text-white">
+                      <div className="h-full bg-[#1280C2] flex flex-col justify-center px-3 py-1">
+                      <Add/>
+                      </div>
+                      <div className="h-full w-full flex justify-center items-center px-4 py-2">
+                      <h2 className="text-center text-[1rem] whitespace-nowrap">Add to reciept</h2>
+                      </div>
+                  </button>
+                  <button onClick={() => dispatch(searchOpen())} className="col-span-2 bg-[#009DDF] flex text-white">
+                      <div className="h-full bg-[#1280C2] flex flex-col justify-center px-3 py-1">
+                      <Close color="error"/>
+                      </div>
+                      <div className="h-full w-full flex justify-center items-center px-4 py-2">
+                      <h2 className="text-center text-[1rem] whitespace-nowrap">Close</h2>
+                      </div>
+                  </button>
+                </div>
             </div>
         </div>
+    </div>
     </div>
   )
 }

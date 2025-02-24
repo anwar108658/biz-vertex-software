@@ -5,6 +5,7 @@ export const getValSlice = createSlice({
     initialState:{
         data:"" as string,
         keyBoard:false,
+        isSearch:false
     },
     reducers:{
         addVal:(state,action) => {
@@ -22,10 +23,13 @@ export const getValSlice = createSlice({
         },
         keyBoardValChange:(state,action) => {
             state.keyBoard = action.payload
+        },
+        searchOpen:(state) => {
+            state.isSearch = !state.isSearch
         }
     }
 })
 
-export const {addVal,removeVal,keyBoardVal,keyBoardValChange} = getValSlice.actions
+export const {addVal,removeVal,keyBoardVal,keyBoardValChange,searchOpen} = getValSlice.actions
 
 export default getValSlice.reducer
