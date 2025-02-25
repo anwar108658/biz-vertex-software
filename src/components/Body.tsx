@@ -1,12 +1,18 @@
 import { ArrowUpward, Calculate,  Grid4x4, Man,  Payments} from "@mui/icons-material"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, Outlet, useLocation } from "react-router-dom"
-import { addVal, removeVal } from "../store/Slices/getValSlice"
+import { addVal, removeVal, setIsCloseMenu, setIsOpenMenu } from "../store/Slices/getValSlice"
+import MenuUI from "./MenuUI"
+import { useState } from "react"
 
 const num = ["1","2","3","4","5","6","7","8","9","0",".","X","←","✓"]
+
 const body = () => {
     const location = useLocation()
     const dispatch = useDispatch()
+    const store:any = useSelector(store => store)
+    const ItemLi1 = store.isMenu == "search" ? ["Customer","Article","Receipt","Gift Card","Discount","Day-end-closing","period-end-closing"]:
+    ["cash-in/cash-out","Day-end-closing","Cashing-up","Receipt exports","configuration","Sync backend data"]
     const dataHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
         const value = e.currentTarget.innerText
         if (value === "←") {
@@ -16,8 +22,12 @@ const body = () => {
         }
     }
   return (
-    <div className="grid grid-cols-12">
-
+    <div className="relative grid grid-cols-12">
+        {store.openMenu && <div onClick={() => dispatch(setIsCloseMenu())} className="fixed w-full h-full  backdrop-blur-2xl">
+            <ul className="absolute gap-1 bg-[#292D2D] flex justify-center flex-col items-center px-2 py-1 text-white right-0 top-0">
+                <MenuUI data={ItemLi1}/>
+            </ul>
+        </div>}
         <div className="order-1 md:order-0 col-span-12 md:col-span-10 gap-2 grid grid-cols-10 h-[90.3vh] bg-[#E1E1E9]">
 
             <div className="col-span-10 grid grid-cols-10 text-[.9rem] gap-[1px] overflow-auto bg-white min-h-[17rem]">
