@@ -1,9 +1,8 @@
 import { ArrowUpward, Calculate,  Grid4x4, Man,  Payments} from "@mui/icons-material"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Outlet, useLocation } from "react-router-dom"
-import { addVal, removeVal, setIsCloseMenu, setIsOpenMenu } from "../store/Slices/getValSlice"
+import { addVal, removeVal, setIsCloseMenu } from "../store/Slices/getValSlice"
 import MenuUI from "./MenuUI"
-import { useState } from "react"
 
 const num = ["1","2","3","4","5","6","7","8","9","0",".","X","←","✓"]
 

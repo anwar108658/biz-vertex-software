@@ -2,7 +2,7 @@ import { Alarm, Keyboard, Man, Person,PowerSettingsNew, Search, TtySharp } from 
 import logo from "./../assets/Logo - Dark Theme.png";
 import { useDispatch, useSelector } from "react-redux";
 import { isMenuHandle, keyBoardVal, onChangeVal, searchOpen, setIsOpenMenu } from "../store/Slices/getValSlice";
-import { useState } from "react";
+
 
 interface StoreState {
   data: string;
