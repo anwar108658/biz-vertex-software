@@ -1,8 +1,12 @@
 import { ArrowUpward, Calculate,  Grid4x4, Man,  Payments} from "@mui/icons-material"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Outlet, useLocation } from "react-router-dom"
-import { addVal, removeVal, setIsCloseMenu } from "../store/Slices/getValSlice"
+import { addVal, removeVal, searchCustomer, setIsCloseMenu } from "../store/Slices/getValSlice"
 import MenuUI from "./MenuUI"
+import c1 from "../assets/c1.jpg";
+import c2 from "../assets/c2.jpg";
+import c3 from "../assets/c3.jpg";
+import c4 from "../assets/c4.jpg";
 
 const num = ["1","2","3","4","5","6","7","8","9","0",".","X","←","✓"]
 
@@ -81,28 +85,34 @@ const body = () => {
             </div>
         </div>
 
-        <div className="col-span-12 md:col-span-2 bg-[#E1E1E9] p-[1px] h-[90.3vh] flex flex-col justify-between">
-            <div className="flex justify-between py-2 px-1">
+        <div className="col-span-12 md:col-span-2 bg-[#E1E1E9] p-[1px] h-[90.3vh] overflow-hidden flex flex-col gap-1 justify-between">
+            <div className="flex justify-between py-1 px-1">
                 <div className="text-[.9rem]">
-                    <p>Recipt-ID</p>
+                    <p>Receipt-ID</p>
                     <p>Price-List</p>
                 </div>
                 <h1 className="text-2xl text-red-600">Test Mode</h1>
             </div>
             <div className="grid grid-cols-3">
-                <button className="col-span-3 shadow-sm text-[#1D6B9D] bg-[#F2FCFF] text-[.8rem] py-2 px-1">
+                <button onClick={() => dispatch(searchCustomer())} className="col-span-3 shadow-sm text-[#1D6B9D] bg-[#F2FCFF] text-[.8rem] py-1 px-1">
                     <div className="flex justify-items-start"><Man sx={{fontSize:".8rem"}}/><p>Select customers</p></div>
-                    <div><p>Click to Search For a Customer</p><p>or Scan cutome Id</p></div>
+                    <div><p>Click to Search For a Customer</p><p>or Scan custom Id</p></div>
                 </button>
             </div>
             <div className="grid grid-cols-3 gap-1">
                 {
                     num.map((n,i) => {
                         return (
-                            <button key={i} onClick={(e) => dataHandler(e)} className={`${n==="✓"?"col-span-2 bg-green-400 text-white":"col-span-1"} shadow-md ${n==="←"?"bg-red-500 text-white":""} bg-[#F2FCFF] text-[.8rem] py-2 px-1`}>{n}</button>
+                            <button key={i} onClick={(e) => dataHandler(e)} className={`${n==="✓"?"col-span-2 bg-green-400 text-white":"col-span-1"} shadow-md ${n==="←"?"bg-red-500 text-white":""} bg-[#F2FCFF] text-[.8rem] py-1 px-1`}>{n}</button>
                         )
                     })
                 }
+            </div>
+            <div className="grid grid-cols-2">
+                <img src={c1} alt="" />
+                <img src={c2} alt="" />
+                <img src={c3} alt="" />
+                <img src={c4} alt="" />
             </div>
             <div className="col-span-2 grid grid-cols-2 gap-1">
                 <button className="col-span-1 bg-[#009DDF] text-white py-3"><Calculate/></button>
