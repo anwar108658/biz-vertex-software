@@ -92,7 +92,7 @@ const body = () => {
             <div className="grid grid-cols-3">
                 <button className="col-span-3 shadow-sm text-[#1D6B9D] bg-[#F2FCFF] text-[.8rem] py-2 px-1">
                     <div className="flex justify-items-start"><Man sx={{fontSize:".8rem"}}/><p>Select customers</p></div>
-                    <div><p>Click to Serch For a Cutomer</p><p>or Scan cutome Id</p></div>
+                    <div><p>Click to Search For a Customer</p><p>or Scan cutome Id</p></div>
                 </button>
             </div>
             <div className="grid grid-cols-3 gap-1">
