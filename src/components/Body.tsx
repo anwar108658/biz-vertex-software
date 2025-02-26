@@ -1,12 +1,13 @@
 import { ArrowUpward, Calculate,  Grid4x4, Man,  Payments} from "@mui/icons-material"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Outlet, useLocation } from "react-router-dom"
-import { addVal, removeVal, searchCustomer, setIsCloseMenu } from "../store/Slices/getValSlice"
+import { addVal, isPaymentOpen, removeVal, searchCustomer, setIsCloseMenu } from "../store/Slices/getValSlice"
 import MenuUI from "./MenuUI"
 import c1 from "../assets/c1.jpg";
 import c2 from "../assets/c2.jpg";
 import c3 from "../assets/c3.jpg";
 import c4 from "../assets/c4.jpg";
+import Payment from "./Payment"
 
 const num = ["1","2","3","4","5","6","7","8","9","0",".","X","←","✓"]
 
@@ -115,7 +116,7 @@ const body = () => {
                 <img src={c4} alt="" />
             </div>
             <div className="col-span-2 grid grid-cols-2 gap-1">
-                <button className="col-span-1 bg-[#009DDF] text-white py-3"><Calculate/></button>
+                <button onClick={() => dispatch(isPaymentOpen())} className="col-span-1 bg-[#009DDF] text-white py-3"><Calculate/></button>
                 <button className="col-span-1 bg-[#009DDF] text-white py-3"><Grid4x4/></button>
                 <button className="col-span-2 bg-[#009DDF] flex justify-between text-white">
                     <div className="h-full bg-[#1280C2] flex flex-col justify-center px-3 py-3">
@@ -135,6 +136,7 @@ const body = () => {
                 </button>
             </div>
         </div>
+        <Payment/>
     </div>
   )
 }

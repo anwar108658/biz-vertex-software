@@ -9,6 +9,7 @@ export const getValSlice = createSlice({
         searchCustomer:false,
         isMenu:"",
         openMenu:false,
+        isPaymentOpen:false
     },
     reducers:{
         addVal:(state,action) => {
@@ -45,10 +46,13 @@ export const getValSlice = createSlice({
         ,
         setIsCloseMenu:(state) => {
             state.openMenu =  false
+        },
+        isPaymentOpen:(state) => {
+            state.isPaymentOpen = !state.isPaymentOpen
         }
     }
 })
 
-export const {addVal,removeVal,keyBoardVal,keyBoardValChange,searchOpen,onChangeVal,isMenuHandle,setIsOpenMenu,setIsCloseMenu,searchCustomer} = getValSlice.actions
+export const {addVal,removeVal,keyBoardVal,keyBoardValChange,searchOpen,onChangeVal,isMenuHandle,setIsOpenMenu,setIsCloseMenu,searchCustomer,isPaymentOpen} = getValSlice.actions
 
 export default getValSlice.reducer
